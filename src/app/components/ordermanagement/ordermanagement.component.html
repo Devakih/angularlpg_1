@@ -1,0 +1,112 @@
+<app-salessidemenu></app-salessidemenu>
+<div class="row" style="margin-top:20px;margin-left:20px">
+<div class="col-md-3">
+    <form action="">
+      <table>
+          <tr>
+          <td> <input type="radio" name="radiogroup" value="OrderNum" (click)="setradio('OrderNum')"> Order Number </td><span>&emsp;&ensp;</span>
+          <td> <input type="text" name="orderId" [(ngModel)]="orderId"></td>
+        </tr>
+        <tr>
+          <Strong>Or</Strong>
+        </tr>
+        <tr>
+            <td> <input type="radio" name="radiogroup" value="OrderDt" (click)="setradio('OrderDt')"> Order Date </td> <span>&emsp;&ensp;</span>
+            <td> <input type="date" name="orderDate"   [(ngModel)]="orderDate" useValueAsDate> </td>
+        </tr>
+          <span>&emsp;&ensp;&ensp;</span>
+          <tr>
+             <input class="btn btn-primary" type="submit" value="Go" (click) = onSubmit()> 
+          </tr>
+        </table>
+    </form>
+    <span>&emsp;&ensp;&ensp;</span>
+    <div *ngIf="selectedLink == 'OrderDt' && orders.length > 0">
+        <table class="table table-bordered">
+            <tr>
+               <th class="text-center">Order Number</th>
+            </tr>
+            <tr  *ngFor ="let order of orders">
+              <td><a (click)="showOrderDetails(order.orderId)">{{order.orderId}}</a></td>
+            </tr>
+          </table>
+    </div>
+</div>
+<br/>
+<div class="col-md-8" *ngIf ="gotOrderObj == true">
+    <form>
+<table class="table table-bordered">
+    <tr>
+        <td class="text-right">
+                <label><strong>{{ currentDate | date }} </strong></label>
+        </td>
+    </tr>
+</table>
+<table class="table table-bordered">
+    <tr>
+        <th class="text-center">Product Code</th>
+        <th class="text-center">Product Name</th>
+        <th class="text-center">Stock</th>
+        <th class="text-center">Quantity</th>
+        <th class="text-center">Discount</th>
+        <th class="text-center">Unit Price</th>
+        <th class="text-center">Total Price</th>
+    </tr>
+    <tr *ngFor ="let lineitem of lineitems" (dblclick) = "removeLineItem(lineitem)">
+        <td>
+         <input type="checkbox" name="selLineItm" (change)="selectedLineItem(lineitem)">
+        </td>
+        <td class="text-center">
+            {{lineitem.shrtDesc}}
+        </td>
+        <td class="text-center">
+            {{lineitem.lineItemDesc}}
+        </td>
+        <td class="text-center">
+            {{lineitem.stock}}
+       </td>
+        <td>
+            {{lineitem.lineItemQuan}}
+        </td>
+        <td class="text-center">
+            {{lineitem.lineItemDis}}
+         </td>
+        <td class="text-center">
+            {{lineitem.lineItemPrc}}
+        </td>
+        <td class="text-center">
+           {{lineitem.lineItemUnTtlPrc}} 
+        </td>
+    </tr>
+</table>
+<div *ngIf ="lineitems.length > 0">
+    <table class="table table-bordered">
+        <tr>
+         <td class="text-right">Total</td>
+         <td class="text-center" style='width: 120px'> {{order.orderAmt}} </td>
+        </tr>
+    </table>
+    <table class="table table-bordered">
+     <tr class="text-center">
+       
+            <input class="btn btn-primary" type="submit" value="Edit" (click) = onSubmit()>
+            <span>&emsp;&ensp;</span>
+            <input class="btn btn-primary" type="submit" value="Delete" (click) = "onDelete(order.orderId)">
+            <span>&emsp;&ensp;</span>
+            <input class="btn btn-primary" type="submit" value="Redund" (click) = onRefund()>
+       
+     </tr>
+    </table>
+</div> 
+</form>
+</div>
+<div class="col-md-8" *ngIf ="deleteDone == true">
+    <table class="table table-bordered">
+        <tr>
+            <td class="text-center">
+                <strong>{{showMsg}}</strong>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>

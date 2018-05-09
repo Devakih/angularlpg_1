@@ -1,0 +1,62 @@
+<div class="col-md-8" *ngIf ="lineitems.length > 0">
+        <form>
+    
+    <table class="table table-bordered">
+        <tr>
+            <td class="text-right">
+                    <label><strong>{{ currentDate | date }} </strong></label>
+            </td>
+        </tr>
+    </table>
+  <!--  <table class="table table-bordered">
+        <tr>
+            <th class="text-center">Product Code</th>
+            <th class="text-center">Product Name</th>
+            <th class="text-center">Stock</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Discount</th>
+            <th class="text-center">Unit Price</th>
+            <th class="text-center">Total Price</th>
+        </tr>
+        <tr *ngFor ="let lineitem of lineitems" (dblclick) = "removeLineItem(lineitem)">
+            <td class="text-center">
+                {{lineitem.shrtDesc}}
+            </td>
+            <td class="text-center">
+                {{lineitem.lineItemDesc}}
+            </td>
+            <td class="text-center">
+                {{lineitem.stock}}
+            </td>
+    <!-- <td class="text-center" contenteditable='true' (input)="onRowClick($event, item.price)"> -->
+    <!--        <td>
+                <input type="text" [(ngModel)]="lineitem.lineItemQuan" name="quantity" size="5">
+            </td>
+            <td class="text-center">
+                <input type="text" [(ngModel)]="lineitem.lineItemDis" name="discount" size="5">
+             </td>
+            <td class="text-center">
+                {{lineitem.lineItemPrc}}
+            </td>
+            <td class="text-center">
+               {{lineitem.lineItemQuan * lineitem.lineItemPrc - lineitem.lineItemDis}} 
+            </td>
+        </tr>
+    </table>
+    <div *ngIf ="lineitems.length > 0">
+        <table class="table table-bordered">
+            <tr>
+             <td class="text-right">Total</td>
+             <td class="text-center" style='width: 120px'>{{getTotal()}}</td>
+            </tr>
+        </table>
+        <table class="table table-bordered">
+         <tr>
+            <td class="text-center">
+                <input class="btn btn-primary" type="submit" value="Submit" (click) = onSubmit()>
+            </td>
+         </tr>
+        </table>
+    </div> -->
+    </form>
+    </div>
